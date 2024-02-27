@@ -1,35 +1,30 @@
 return {
 	'folke/zen-mode.nvim',
+  dependencies = {
+    'folke/twilight.nvim',
+  },
+  cmd = {'ZenMode', 'Twilight'},
+  keys = {
+    vim.keymap.set('n', '<leader>z', '<cmd>ZenMode<cr>', {silent = true}),
+    desc = 'Zenmode',
+  },
 	config = function()
-		vim.keymap.set("n", "<leader>zz", function()
-			require("zen-mode").setup {
-				window = {
-					width = 90,
-					options = { }
-				},
-			}
-			require("zen-mode").toggle()
-			vim.wo.wrap = false
-			vim.wo.number = true
-			vim.wo.rnu = true
-			ColorMyPencils()
-		end)
-
-
-		vim.keymap.set("n", "<leader>zZ", function()
-			require("zen-mode").setup {
-				window = {
-					width = 80,
-					options = { }
-				},
-			}
-			require("zen-mode").toggle()
-			vim.wo.wrap = false
-			vim.wo.number = false
-			vim.wo.rnu = false
-			vim.opt.colorcolumn = "0"
-			ColorMyPencils()
-		end)
-
+    require('twilight').setup({
+      dimming = { alpha = 0.45, color = { 'Normal', '#ffffff'}, inactive = false},
+      context = 9,
+      treesitter = true,
+      expand = {'function', 'method', 'table', 'if_statement', 'element'},
+      exclude = {},
+    })
+    require("zen-mode").setup({
+      wezterm = {
+        enabled = true,
+      },
+      window = {
+        backdrop = 0.95,
+        width = 120,
+        height = 1,
+      },
+    })
 	end
 }

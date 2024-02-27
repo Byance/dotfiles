@@ -40,3 +40,7 @@ local powershell_options = {
 for option, value in pairs(powershell_options) do
   vim.opt[option] = value
 end
+
+vim.g.netrw_browse_split = 0
+vim.g.netrw_banner = 0
+vim.g.netrw_winsize = 25
